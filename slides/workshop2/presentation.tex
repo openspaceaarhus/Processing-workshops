@@ -13,6 +13,24 @@
 \usepackage{graphicx}
 \usepackage{url}
 
+\graphicspath{{images/}}
+\newcommand{\FIG}[2]{
+\begin{figure}[]
+  \centering
+  \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+  \caption{#2}
+  \label{fig:#1}
+\end{figure}
+}
+
+\newcommand{\FIGSMALL}[2]{
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
+  \caption{#2}
+  \label{fig:#1}
+\end{figure}
+}
 
 
 \title{Processing.org workshops\\Intro}
@@ -37,7 +55,7 @@
   \item Hvad er et partikelsystem
   \item Kode
     \begin{itemize}
-    \item Betingelser
+    \item Forgreninger
     \item Løkker
     \item Klasser
     \end{itemize}
@@ -62,24 +80,169 @@
 
 \begin{frame}
   \frametitle{Partikelsystem}
-
+  
+  \emph{video der viser det er mere end bolde}
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{}
+
+\begin{frame}[fragile]
+  \frametitle{Boolean - \emph{endnu en datatype}}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Boolean}
+        Kan være \emph{sand} eller \emph{falsk}
+      \end{block}
+    \end{column}
+    \begin{column}{0.6\textwidth}    
+      \texttt{\emph{boolean} nemt = true; }\\
+      \texttt{\emph{boolean} justinRocks = false; }
+    \end{column}
+  \end{columns}  
 \end{frame}
 
-\begin{frame}
-  \frametitle{}
+
+\begin{frame}[fragile]
+  \frametitle{Forgreninger}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Sammenligninger}
+          \begin{table}[h]
+            \centering
+            \begin{tabular}{lr}
+              \hline
+        Lighed & $==$ \\
+        Ikke ens & $!=$\\
+        Større end & $> $\\
+        Mindre end & $<$\\
+        Større end eller lig & $>=$\\
+        Ditto for mindre & $<=$\\
+              
+            \end{tabular}
+          \end{table}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+int x = 42;
+int y = 0;
+
+boolean foo = (x == y);
+//false
+
+boolean bar = (x >= y);
+//true
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}
-  \frametitle{}
+
+\begin{frame}[fragile]
+  \frametitle{Boolske udtryke}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Sammenligninger}
+          \begin{table}[h]
+            \centering
+            \begin{tabular}{llr}
+              Dansk & teknisk & kode \\
+              \hline
+              og & \texttt{and} & $\&\&$ \\
+              enten & \texttt{or} & $|| $\\
+              Ikke & \texttt{not} & $!$\\
+              enten-eller & \texttt{xor} & $\wedge$\\
+            \end{tabular}
+          \end{table}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+boolean glad = true;
+boolean sur = false;
+
+boolean meh = (glad || sur);
+boolean godEksempel = !sur;
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
 \end{frame}
 
+
+
 \begin{frame}
-  \frametitle{}
+  \frametitle{Træning}
+
+\FIG{codingbat}{Eksempel fra \url{http://codingbat.com/java/Warmup-1}}
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Forgreninger}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{If-else-blokke}
+        \texttt{if (\emph{boolean}) \{ }\\
+        \texttt{// do stuff} \\
+        \texttt{\} else \{ } \\
+        \texttt{// do something else} \\
+        \texttt{\}}\\
+        \vspace{1cm}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+if (x < 200) {
+  fill(255, 0, 0);
+}
+
+// if-else block
+if (x < 200) {
+  fill(255, 0, 0);
+} else if (x < 300) {
+  fill(0, 255, 0);
+} else {
+  fill(0, 0, 255);
+}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Løkker}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{looping}
+        \texttt{while (\emph{boolean}) \{ }\\
+        \texttt{// keep doing stuff} \\
+        \texttt{\}}\\
+        \vspace{1cm}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+int x = 0;
+while (x < width) {
+  point(x, 100);
+  x++;
+}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{For loop \emph{ syntaktisk sukker}}
+
+  der mangler stadigt noget , men det begynder at ligne noget
 \end{frame}
 
 
