@@ -23,6 +23,16 @@
   \end{figure}
 }
 
+\newcommand{\FIGMED}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.75\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
 \newcommand{\FIGSMALL}[2]{
   \begin{figure}[htbp]
     \centering
@@ -319,7 +329,7 @@ if (x < 200) {
 
 
 \begin{frame}[fragile]
-  \frametitle{Løkker}
+  \frametitle{Løkker - \emph{while}}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{block}{looping}
@@ -342,13 +352,111 @@ while (x < width) {
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{For loop \emph{ syntaktisk sukker}}
+\begin{frame}[fragile]
+  \frametitle{Løkker - \emph{for}}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{for loop}
+        Ligesom \emph{while} løkke, men tit vil vi gerne bruge en tæller så\\
+        \begin{description}
+        \item[start] initialisering
+        \item[betingelse] Hvor længe skal vi blive ved
+        \item[pr-gang] gør noget for hvert gennemløb
+        \end{description}
+        
+      \end{block}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+\begin{verbatim} 
+//( start; betingelse; pr-gang)
+for(int x = 0; x < width; x++){
+  point(x, 100);
+}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
 
-  der mangler stadigt noget , men det begynder at ligne noget
+\begin{frame}[fragile]
+  \frametitle{Mission bold}
+
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{Mission bold}
+        \begin{itemize}
+        \item Gem retning i sin egen variabel
+        \item Opdater position baseret på retning
+        \item Skift retning når bolden rammer kanten
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+\begin{verbatim} 
+
+float boldX = 200;
+float boldY = 200;
+
+float deltaX = 2.3;
+float deltaY = 1.3;
+
+if ( boldX > width) {
+   deltaX = -deltaX;
+}
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Mission bold }
+
+  \begin{block}{The mission}
+    \begin{itemize}
+    \item lav noget sjovt i draw-metoden
+    \item Add all borders ( $x < 0$, $Y>height$ \ldots)
+    \item Hold pause
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[plain]
+  \frametitle{Mere interesseant bevægelser}
+
+\FIGMED{curve}{$\mathbf{v}(t) = \mathbf{v}_0 + \int_0^{t} \mathbf{a} \; dt' = \mathbf{v}_0 + \mathbf{a}t$}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mere interesseant bevægelser}
+
+  \begin{block}{Den simple version}
+    delta er hastighed. \\
+    Så position i næste frame : \\
+    \texttt{pos = pos + delta} 
+  \end{block}
+
 \end{frame}
 
 
 
+
+
+\begin{frame}
+  \frametitle{Tak for i dag}
+
+  \begin{itemize}
+  \item Hvad syntes \emph{du} om i dag?
+  \item Næste gang: flere bolde
+  \item $T^3$ i må meget gerne hjælpe med at rydde lokalet.
+  \end{itemize}
+
+  \begin{block}{Klasseværelset}
+    \url{www.openprocessing.org/classrooms/?classroomID=1075}
+  \end{block}
+
+\end{frame}
 \end{document}
 
