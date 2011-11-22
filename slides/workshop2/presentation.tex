@@ -15,21 +15,21 @@
 
 \graphicspath{{images/}}
 \newcommand{\FIG}[2]{
-\begin{figure}[]
-  \centering
-  \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
-  \caption{#2}
-  \label{fig:#1}
-\end{figure}
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
 }
 
 \newcommand{\FIGSMALL}[2]{
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
-  \caption{#2}
-  \label{fig:#1}
-\end{figure}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
 }
 
 
@@ -53,6 +53,7 @@
   \begin{itemize}
   \item \url{http://openprocessing.org}
   \item Hvad er et partikelsystem
+  \item Opsumering variable
   \item Kode
     \begin{itemize}
     \item Forgreninger
@@ -86,6 +87,108 @@
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{Teoretiske deltaljer}
+  
+  Først tager vi lige en hurtig og tildels teoretisk gennemgang af
+  centrale begreber fra sidst + det nye vi skal bruge i dag. \\
+\vspace{2cm}
+  Derefter skal vi har \emph{beskidte fingre}.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Variable - \emph{erklæringer}}
+  
+  Der er indbyggede variable som
+  \begin{itemize}
+  \item mouseX
+  \item mouseY
+  \item width
+  \end{itemize}
+
+  Du kan \emph{erklære} din egne variable
+  \begin{itemize}
+  \item int x;
+  \item float y;
+  \end{itemize}
+
+  \begin{block}{Erklæring}
+    datatype navn;
+  \end{block}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variable - \emph{tildelinger}}
+  
+  Du kan \emph{tildele} en værdi til variable.
+  \begin{itemize}
+  \item x = 42;
+  \item y = 3.14;
+  \end{itemize}
+
+
+  \begin{block}{OBS datatyper}
+    int x; \\
+    x = 3.14 \\
+    x er nu 3, fordi den automagisk laver den om til et heltal.
+  \end{block}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Datatyper}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{int}
+        Heltal (integer) : $1,2,42$
+      \end{block}
+      \begin{block}{float}
+        komma tal: $3.14 \times 10^{42}$
+      \end{block}
+
+    \end{column}
+    \begin{column}{0.6\textwidth}    
+\begin{verbatim}
+int x = 42;
+
+float y = 3.14;
+\end{verbatim}
+
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Datatyper - lidt andre}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{double}
+        ligsom \texttt{float}, bare flere decimaler
+      \end{block}
+      \begin{block}{String}
+        Tekst stykker: ``I'm a string''
+      \end{block}
+    \end{column}
+    \begin{column}{0.6\textwidth}    
+\begin{verbatim}
+
+double z = 8.92838429338;
+
+
+String hello = "world";
+
+\end{verbatim}
+
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+
+
 \begin{frame}[fragile]
   \frametitle{Boolean - \emph{endnu en datatype}}
   \begin{columns}
@@ -107,19 +210,19 @@
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{block}{Sammenligninger}
-          \begin{table}[h]
-            \centering
-            \begin{tabular}{lr}
-              \hline
-        Lighed & $==$ \\
-        Ikke ens & $!=$\\
-        Større end & $> $\\
-        Mindre end & $<$\\
-        Større end eller lig & $>=$\\
-        Ditto for mindre & $<=$\\
-              
-            \end{tabular}
-          \end{table}
+        \begin{table}[h]
+          \centering
+          \begin{tabular}{lr}
+            \hline
+            Lighed & $==$ \\
+            Ikke ens & $!=$\\
+            Større end & $> $\\
+            Mindre end & $<$\\
+            Større end eller lig & $>=$\\
+            Ditto for mindre & $<=$\\
+            
+          \end{tabular}
+        \end{table}
       \end{block}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -144,17 +247,17 @@ boolean bar = (x >= y);
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{block}{Sammenligninger}
-          \begin{table}[h]
-            \centering
-            \begin{tabular}{llr}
-              Dansk & teknisk & kode \\
-              \hline
-              og & \texttt{and} & $\&\&$ \\
-              enten & \texttt{or} & $|| $\\
-              Ikke & \texttt{not} & $!$\\
-              enten-eller & \texttt{xor} & $\wedge$\\
-            \end{tabular}
-          \end{table}
+        \begin{table}[h]
+          \centering
+          \begin{tabular}{llr}
+            Dansk & teknisk & kode \\
+            \hline
+            og & \texttt{and} & $\&\&$ \\
+            enten & \texttt{or} & $|| $\\
+            Ikke & \texttt{not} & $!$\\
+            enten-eller & \texttt{xor} & $\wedge$\\
+          \end{tabular}
+        \end{table}
       \end{block}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -175,7 +278,7 @@ boolean godEksempel = !sur;
 \begin{frame}
   \frametitle{Træning}
 
-\FIG{codingbat}{Eksempel fra \url{http://codingbat.com/java/Warmup-1}}
+  \FIG{codingbat}{Eksempel fra \url{http://codingbat.com/java/Warmup-1}}
 
 \end{frame}
 
