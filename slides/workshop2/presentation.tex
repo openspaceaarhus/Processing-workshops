@@ -91,9 +91,10 @@
 
 \begin{frame}
   \frametitle{Partikelsystem}
-  
-  \emph{video der viser det er mere end bolde}
 
+  \url{http://vimeo.com/28256186}  
+
+  \url{https://www.youtube.com/watch?v=ncykt-YJO1M}
 \end{frame}
 
 
@@ -142,7 +143,8 @@
   \begin{block}{OBS datatyper}
     int x; \\
     x = 3.14 \\
-    x er nu 3, fordi den automagisk laver den om til et heltal.
+    x er nu 3, fordi den automagisk laver den om til et heltal. \\
+    x = ``noget tekst'' <- aaarhg
   \end{block}
 
 \end{frame}
@@ -256,7 +258,7 @@ boolean bar = (x >= y);
   \frametitle{Boolske udtryke}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{block}{Sammenligninger}
+      \begin{block}{operatorer}
         \begin{table}[h]
           \centering
           \begin{tabular}{llr}
@@ -423,24 +425,177 @@ if ( boldX > width) {
 
 
 \begin{frame}[plain]
-  \frametitle{Mere interesseant bevægelser}
+%  \frametitle{Mere interessant bevægelser}
 
-\FIGMED{curve}{$\mathbf{v}(t) = \mathbf{v}_0 + \int_0^{t} \mathbf{a} \; dt' = \mathbf{v}_0 + \mathbf{a}t$}
+\FIGMED{curve}{$s =  \int_{t_1}^{t_2} ds =\int_{t_1}^{t_2} \sqrt{dx^2 + dy^2 + dz^2} = \int_{t_1}^{t_2} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2}\; dt$}
   
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mere interesseant bevægelser}
+  \frametitle{Mere interessante bevægelser}
 
-  \begin{block}{Den simple version}
-    delta er hastighed. \\
-    Så position i næste frame : \\
-    \texttt{pos = pos + delta} 
+  \begin{block}{Kræfter}
+    I virkligheden bliver \emph{partikler} udsat for flere forskellige kræfter.
+    \begin{itemize}
+    \item Tyngdekraft
+    \item Vind
+    \item Gnidningsmodstand
+    \item Magnetisme\\
+    \hspace{.3cm}       \vdots
+    \item Fjerderkræfter
+
+    \end{itemize}
   \end{block}
 
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{Vi \emph{snyder}}
+
+
+  \begin{block}{Aaargh matematik og formler}
+    På en eller anden facon er ting der opfører sig naturligt pæne. Fysik og matematik forsøger at beskrive naturen \ldots
+  \end{block}
+
+
+  \begin{block}{Computergrafikkens 1. lov}
+    Hvis det ser rigtigt ud, er det rigtigt.
+  \end{block}
+
+
+
+  Man kan udregne det udfra fysiske love og opstille ganske
+  komplicerede ligningsystemer. \\
+  Man kan også lave noget det ligner ret godt.
+
+  
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Gnidningsmodstand}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+  \begin{block}{Bolden}
+    delta er hastighed. \\
+
+    Vi ændre hastigheden for at efterligne kræfter.
+  \end{block}
+
+
+  \begin{block}{Gnidnings modstand}
+    Vi gør hastigheden mindre og mindre pr frame(tidsskridt).\\
+    Ganger delta med et tal tæt på een.
+  \end{block}
+
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+  float modstand = 0.996;
+  deltaX *= modstand;
+  deltaY *= modstand;
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Tyngdekraft}
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      
+      \begin{block}{Tyngdekraft}
+        Påvirker hastigheden så ting falder ned, det vil sige deltaY bliver større.
+      \end{block}
+      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+
+deltaY += .1;
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Prøv det}
+Start bold og tilføj vindmodstand og tyngdekraft
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim}
+float boldX = width/2;
+float boldY = 2.0 * height/3;
+float deltaX = 2;
+float deltaY = -2.5;
+float modstand = 0.996;
+float tyngdekraft = 0.1;
+\end{verbatim}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+void draw() {
+  deltaY += tyngdekraft;
+  deltaX *= modstand;
+  deltaY *= modstand;
+  boldX += deltaX;
+  boldY += deltaY;
+  //Check grænser
+  //Tegn bold
+}
+\end{verbatim}
+
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{\texttt{Tech Tip:}OpenGL}
+
+  At bruge OpenGL til at rendere betyder at arbejdet med at tegne sker
+  på grafik kortet.
+
+\begin{verbatim}
+import processing.opengl.*;
+
+void setup() {
+  size(400,400, OPENGL);
+  //mere init
+}
+\end{verbatim}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Udfordringer}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item alpha blending: lad vær med at tegne baggrund og brug alpha
+      \item tegn en streg fra sidste position til nuværende
+      \item tegn anderledes kugle
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item lad musen tiltrække bolden
+      \item multiplayer: flere kanonner + skyd hinaden
+      \item blæsevejr
+      \end{itemize}
+    \end{column}
+    
+  \end{columns}
+
+\end{frame}
 
 
 
