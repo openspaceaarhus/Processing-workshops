@@ -12,6 +12,7 @@
 \usepackage[danish]{babel}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage[normalem]{ulem}
 
 \graphicspath{{images/}}
 \newcommand{\FIG}[2]{
@@ -104,7 +105,12 @@
   Først tager vi lige en hurtig og tildels teoretisk gennemgang af
   centrale begreber fra sidst + det nye vi skal bruge i dag. \\
 \vspace{2cm}
-  Derefter skal vi har \emph{beskidte fingre}.
+Derefter skal vi har \emph{beskidte fingre}.
+
+\begin{block}{Slides og processing filer}
+\url{http://poodle/processing}   
+\end{block}
+
 \end{frame}
 
 
@@ -144,7 +150,7 @@
     int x; \\
     x = 3.14 \\
     x er nu 3, fordi den automagisk laver den om til et heltal. \\
-    x = ``noget tekst'' <- aaarhg
+    \sout{x = ``noget tekst''} \textbf{Boom}
   \end{block}
 
 \end{frame}
@@ -258,7 +264,7 @@ boolean bar = (x >= y);
   \frametitle{Boolske udtryke}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{block}{operatorer}
+      \begin{block}{Operatorer}
         \begin{table}[h]
           \centering
           \begin{tabular}{llr}
@@ -570,12 +576,66 @@ void setup() {
   //mere init
 }
 \end{verbatim}
-
-
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Kanon}
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      
+      \begin{block}{Tegne}
+        En simpel kanon er et løb, altså en rektangel. \\
+        Men løbet skal jo drejes?
+      \end{block}
+
+      \begin{block}{Transformationer}
+        \texttt{tranlate} og \texttt{rotate} skal angives rigtig
+        rækkefølge, og fortæller beskriver hvordan og hvorledes de
+        efterfølgende ting tegnes.
+      \end{block}
+
+      
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+//husk radianer!
+float cannonA = PI/4.0; 
+// tegn kanonen
+translate(0, 400);
+rotate(cannonA); 
+rect(0, -10, 50, 20);
+
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{\texttt{Tech Tip:}Radianer}
+
+  Vinkler angives i intervallet $[0 - 2\pi]$, den omvendte y-akse gør at vinklerne kører med uret, modsat normal trigonometri.
+\begin{description}
+\item[\texttt{radians(A)}] Fra grader til radianer
+\item[\texttt{degrees(A)}] Fra radianer til grader
+\end{description}
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \FIGMED{unit_circle}{\url{http://processing.org/learning/trig/}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \FIGMED{unitCircleDegrees.png}{\url{http://btk.tillnagel.com/tutorials/rotation-translation-matrix.html}}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Udfordringer}
+
+  Ændr \texttt{modstand} og \texttt{tyngdekraft}
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -583,12 +643,13 @@ void setup() {
       \item alpha blending: lad vær med at tegne baggrund og brug alpha
       \item tegn en streg fra sidste position til nuværende
       \item tegn anderledes kugle
+      \item lad kuglens form og farve afhænge af dens \emph{alder}
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
       \item lad musen tiltrække bolden
-      \item multiplayer: flere kanonner + skyd hinaden
+      \item multiplayer: flere kanoner + skyd hinaden
       \item blæsevejr
       \end{itemize}
     \end{column}
