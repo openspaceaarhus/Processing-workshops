@@ -82,8 +82,7 @@
   \frametitle{OpenProcessing.org}
   \begin{block}{Hvad har de flittige lavet}
     \begin{itemize}
-    \item \url{link 1}
-    \item \url{link 2}
+    \item \url{http://www.openprocessing.org/classrooms/?classroomID=1075}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -100,16 +99,16 @@
 
 
 \begin{frame}
-  \frametitle{Teoretiske deltaljer}
+  \frametitle{Introduktion}
   
   Først tager vi lige en hurtig og tildels teoretisk gennemgang af
   centrale begreber fra sidst + det nye vi skal bruge i dag. \\
-\vspace{2cm}
-Derefter skal vi har \emph{beskidte fingre}.
+  \vspace{2cm}
+  Derefter skal vi har \emph{beskidte fingre}.
 
-\begin{block}{Slides og processing filer}
-\url{http://poodle/processing}   
-\end{block}
+  \begin{block}{Slides og processing filer}
+    \url{http://poodle/processing}   
+  \end{block}
 
 \end{frame}
 
@@ -187,6 +186,9 @@ float y = 3.14;
       \begin{block}{double}
         ligsom \texttt{float}, bare flere decimaler
       \end{block}
+      \begin{block}{char}
+        En \emph{byte(0-255)} - kan gemme eet bogstav.
+      \end{block}
       \begin{block}{String}
         Tekst stykker: ``I'm a string''
       \end{block}
@@ -196,6 +198,8 @@ float y = 3.14;
 
 double z = 8.92838429338;
 
+//OBS  ' og ikke " 
+char c = 'X'; 
 
 String hello = "world";
 
@@ -224,10 +228,10 @@ String hello = "world";
 
 
 \begin{frame}[fragile]
-  \frametitle{Forgreninger}
+  \frametitle{Sammenligninger}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{block}{Sammenligninger}
+      \begin{block}{Operatorer}
         \begin{table}[h]
           \centering
           \begin{tabular}{lr}
@@ -422,8 +426,8 @@ if ( boldX > width) {
 
   \begin{block}{The mission}
     \begin{itemize}
-    \item lav noget sjovt i draw-metoden
-    \item Add all borders ( $x < 0$, $Y>height$ \ldots)
+    \item Lav noget sjovt i draw-metoden
+    \item Tilføj alle kanter ( $x < 0$, $Y>height$ \ldots)
     \item Hold pause
     \end{itemize}
   \end{block}
@@ -431,9 +435,9 @@ if ( boldX > width) {
 
 
 \begin{frame}[plain]
-%  \frametitle{Mere interessant bevægelser}
+  % \frametitle{Mere interessant bevægelser}
 
-\FIGMED{curve}{$s =  \int_{t_1}^{t_2} ds =\int_{t_1}^{t_2} \sqrt{dx^2 + dy^2 + dz^2} = \int_{t_1}^{t_2} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2}\; dt$}
+  \FIGMED{curve}{$s =  \int_{t_1}^{t_2} ds =\int_{t_1}^{t_2} \sqrt{dx^2 + dy^2 + dz^2} = \int_{t_1}^{t_2} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2}\; dt$}
   
 \end{frame}
 
@@ -447,7 +451,7 @@ if ( boldX > width) {
     \item Vind
     \item Gnidningsmodstand
     \item Magnetisme\\
-    \hspace{.3cm}       \vdots
+      \hspace{.3cm}       \vdots
     \item Fjerderkræfter
 
     \end{itemize}
@@ -484,17 +488,17 @@ if ( boldX > width) {
 
   \begin{columns}
     \begin{column}{0.5\textwidth}
-  \begin{block}{Bolden}
-    delta er hastighed. \\
+      \begin{block}{Bolden}
+        delta er hastighed. \\
 
-    Vi ændre hastigheden for at efterligne kræfter.
-  \end{block}
+        Vi ændre hastigheden for at efterligne kræfter.
+      \end{block}
 
 
-  \begin{block}{Gnidnings modstand}
-    Vi gør hastigheden mindre og mindre pr frame(tidsskridt).\\
-    Ganger delta med et tal tæt på een.
-  \end{block}
+      \begin{block}{Gnidnings modstand}
+        Vi gør hastigheden mindre og mindre pr frame(tidsskridt).\\
+        Ganger delta med et tal tæt på een.
+      \end{block}
 
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -532,7 +536,7 @@ deltaY += .1;
 
 \begin{frame}[fragile]
   \frametitle{Prøv det}
-Start bold og tilføj vindmodstand og tyngdekraft
+  Start bold og tilføj vindmodstand og tyngdekraft
   \begin{columns}
     \begin{column}{0.5\textwidth}
 \begin{verbatim}
@@ -616,19 +620,73 @@ rect(0, -10, 50, 20);
   \frametitle{\texttt{Tech Tip:}Radianer}
 
   Vinkler angives i intervallet $[0 - 2\pi]$, den omvendte y-akse gør at vinklerne kører med uret, modsat normal trigonometri.
-\begin{description}
-\item[\texttt{radians(A)}] Fra grader til radianer
-\item[\texttt{degrees(A)}] Fra radianer til grader
-\end{description}
-\begin{columns}
-  \begin{column}{0.5\textwidth}
-    \FIGMED{unit_circle}{\url{http://processing.org/learning/trig/}}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-    \FIGMED{unitCircleDegrees.png}{\url{http://btk.tillnagel.com/tutorials/rotation-translation-matrix.html}}
-  \end{column}
-\end{columns}
+  \begin{description}
+  \item[\texttt{radians(A)}] Fra grader til radianer
+  \item[\texttt{degrees(A)}] Fra radianer til grader
+  \end{description}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \FIGMED{unit_circle}{\url{http://processing.org/learning/trig/}}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \FIGMED{unitCircleDegrees.png}{\url{http://btk.tillnagel.com/tutorials/rotation-translation-matrix.html}}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Keyboard input}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{\texttt{void keyPressed()}}
+        Funktionen bliver kaldt, når en tast bliver tastet.\\
+
+        Processing har indbyggede variable:
+        \begin{description}
+        \item[key] \texttt{char} der beskriver tasten
+        \item[keyCode] indbygget variable som : \texttt{LEFT, RIGHT, UP} etc
+        \end{description}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+\begin{verbatim} 
+void keyPressed() {
+  if (keyCode == LEFT) {
+    // drej kanon mod uret
+  } else if (keyCode == RIGHT) {
+    // drej kanon med uret
+    cannonA += .05;
+  } else if (key == ' ') {
+    // sæt start position
+    // sæt start hastighed
+  } 
+}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Kollisions detektion}
+  \begin{block}{ramte jeg noget?}
+    Vi er heldige at vore målskive er rund.\\
+    d = afstand mellem kugle og målskive. \\
+    hvis $d < radius_{skive}+radius_{kugle}$ har vi ramt! 
+  \end{block}
+  \begin{block}{Afstand}
+    processing funktion \texttt{dist(x1, y1, x2, y2)} \\
+    ellers $d = \sqrt{ (x_1-x_2) (x_1-x_2) + (y_1-y_2)(y_1-y_2)}$
+  \end{block}
+
+\begin{verbatim} 
+float d = dist(kugleX, kugleY, targetX, targetY);
+if (d < 30) {
+   //vi ramte!!
+}  
+\end{verbatim}
+
+\end{frame}
+
 
 
 
@@ -651,6 +709,8 @@ rect(0, -10, 50, 20);
       \item lad musen tiltrække bolden
       \item multiplayer: flere kanoner + skyd hinaden
       \item blæsevejr
+      \item tæl points
+      \item ram noget andet
       \end{itemize}
     \end{column}
     
