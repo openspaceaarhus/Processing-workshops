@@ -62,14 +62,20 @@
 \begin{frame}
   \frametitle{Dagens program}
   \begin{itemize}
-  \item \url{http://openprocessing.org}
+  \item Introduktion
   \item Hvad er et partikelsystem
   \item Opsumering variable
   \item Kode
     \begin{itemize}
+    \item Datatyper
     \item Forgreninger
     \item Løkker
-    \item Klasser
+    \end{itemize}
+
+  \item Workshop
+    \begin{itemize}
+    \item Bold
+    \item Kanon kugle
     \end{itemize}
 
   \item \emph{Afslutning}
@@ -103,13 +109,13 @@
   
   Først tager vi lige en hurtig og tildels teoretisk gennemgang af
   centrale begreber fra sidst + det nye vi skal bruge i dag. \\
-  \vspace{2cm}
+  \vspace{1cm}
   Derefter skal vi har \emph{beskidte fingre}.
 
   \begin{block}{Slides og processing filer}
     \url{http://poodle/processing}   
   \end{block}
-
+  {\tiny Slidsne kan sikkert bruges til at kigge i eller kopiere fra.}
 \end{frame}
 
 
@@ -129,8 +135,9 @@
   \item float y;
   \end{itemize}
 
-  \begin{block}{Erklæring}
-    datatype navn;
+  \begin{block}{Erklæring af variable}
+    \emph{datatype} \texttt{navn;}\\
+    \emph{datatype} \texttt{navn = startværdi;} 
   \end{block}
 
 \end{frame}
@@ -296,17 +303,6 @@ boolean godEksempel = !sur;
 \end{frame}
 
 
-
-\begin{frame}
-  \frametitle{Træning}
-
-  \FIG{codingbat}{Eksempel fra \url{http://codingbat.com/java/Warmup-1}}
-
-\end{frame}
-
-
-
-
 \begin{frame}[fragile]
   \frametitle{Forgreninger}
   \begin{columns}
@@ -389,9 +385,15 @@ for(int x = 0; x < width; x++){
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Træning}
+  Online kodetræning, gode små opgaver til aftenkaffen.
+  \FIG{codingbat}{Eksempel fra \url{http://codingbat.com/java/Warmup-1}}
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{Mission bold}
-
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \begin{block}{Mission bold}
@@ -427,7 +429,7 @@ if ( boldX > width) {
   \begin{block}{The mission}
     \begin{itemize}
     \item Lav noget sjovt i draw-metoden
-    \item Tilføj alle kanter ( $x < 0$, $Y>height$ \ldots)
+    \item Tilføj alle kanter ( $x < 0$, $ y > height$ \ldots)
     \item Hold pause
     \end{itemize}
   \end{block}
@@ -452,7 +454,7 @@ if ( boldX > width) {
     \item Gnidningsmodstand
     \item Magnetisme\\
       \hspace{.3cm}       \vdots
-    \item Fjerderkræfter
+    \item Fjederkræfter
 
     \end{itemize}
   \end{block}
@@ -473,13 +475,9 @@ if ( boldX > width) {
     Hvis det ser rigtigt ud, er det rigtigt.
   \end{block}
 
-
-
-  Man kan udregne det udfra fysiske love og opstille ganske
+  Man kan udregne bevægelser udfra de fysiske love og opstille ganske
   komplicerede ligningsystemer. \\
-  Man kan også lave noget det ligner ret godt.
-
-  
+  Man kan også lave noget der ligner ret godt.
 
 \end{frame}
 
@@ -497,7 +495,7 @@ if ( boldX > width) {
 
       \begin{block}{Gnidnings modstand}
         Vi gør hastigheden mindre og mindre pr frame(tidsskridt).\\
-        Ganger delta med et tal tæt på een.
+        Det gøres ved at gange delta med et tal tæt på een.
       \end{block}
 
     \end{column}
@@ -506,7 +504,6 @@ if ( boldX > width) {
   float modstand = 0.996;
   deltaX *= modstand;
   deltaY *= modstand;
-
 \end{verbatim}
     \end{column}
   \end{columns}
@@ -526,7 +523,7 @@ if ( boldX > width) {
     \begin{column}{0.5\textwidth}
 \begin{verbatim} 
 
-deltaY += .1;
+deltaY += 0.1;
 
 \end{verbatim}
     \end{column}
@@ -594,8 +591,8 @@ void setup() {
       \end{block}
 
       \begin{block}{Transformationer}
-        \texttt{tranlate} og \texttt{rotate} skal angives rigtig
-        rækkefølge, og fortæller beskriver hvordan og hvorledes de
+        \texttt{translate} og \texttt{rotate} skal angives rigtig
+        rækkefølge, og fortæller beskriver hvor og hvorledes de
         efterfølgende ting tegnes.
       \end{block}
 
@@ -604,12 +601,11 @@ void setup() {
     \begin{column}{0.5\textwidth}
 \begin{verbatim} 
 //husk radianer!
-float cannonA = PI/4.0; 
+float cannonA = -PI/4.0; 
 // tegn kanonen
 translate(0, 400);
 rotate(cannonA); 
 rect(0, -10, 50, 20);
-
 \end{verbatim}
     \end{column}
   \end{columns}
@@ -668,7 +664,7 @@ void keyPressed() {
 
 \begin{frame}[fragile]
   \frametitle{Kollisions detektion}
-  \begin{block}{ramte jeg noget?}
+  \begin{block}{Ramte jeg noget?}
     Vi er heldige at vore målskive er rund.\\
     d = afstand mellem kugle og målskive. \\
     hvis $d < radius_{skive}+radius_{kugle}$ har vi ramt! 
