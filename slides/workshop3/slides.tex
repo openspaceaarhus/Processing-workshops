@@ -174,15 +174,24 @@ Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug e
 \begin{frame}[fragile]
   \frametitle{Arrays}
   
-  {\tiny en opslagstabel}
+  Et array er en opslagstabel. Man kan lave et array med et fast antal pladser.
+  Derefter kan man skrive og læse værdier på de enkelte pladser i arrayet.
+  
   \begin{itemize}
   \item deklaration: float[] boldX = new float[10];
-  \item tildeling: boldX[0] = 100; boldX[1] = 120;
-  \item læsning: ellipse(boldX[0], boldX[0], 30, 30);
+  \item tildeling: boldX[5] = 100; 
+  \item læsning: ellipse(boldX[5], boldY[5], 30, 30);
   \end{itemize}
   
 \end{frame}
 
+
+\begin{frame}[fragile]
+  \frametitle{Øvelse til arrays}
+  
+  Skal vi have en lille øvelse med arrays?
+  
+\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Arrays til mange bolde}
@@ -199,10 +208,34 @@ Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug e
 \begin{frame}[fragile]
   \frametitle{Arrays og Løkker}
   
-  {\tiny A match made in heaven}
+  Arrays og løkker er som skabt til hinanden. Vi kan bruge en for-løkke til 
+  at løbe igennem kuglerne og opdatere deres positioner.
+
+\begin{verbatim}
+int ANTAL = 10;
+
+float[] kugleX = new float[ANTAL];
+float[] kugleY = new float[ANTAL];
+float[] deltaX = new float[ANTAL];
+float[] deltaY = new float[ANTAL];
+
+for (int i = 0; i < ANTAL; i++) {
+  kugleX[i] += deltaX[i];
+  kugleY[i] += deltaY[i];
+}
+\end{verbatim}
+  
    
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Demo}
+  
+  Kanoneksemplet udvidet til at skyde med flere kanonkugler samtidigt.
+  
+  http://www.openprocessing.org/visuals/?visualID=47076
+  
+\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Funktioner}
