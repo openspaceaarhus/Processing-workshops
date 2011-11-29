@@ -1,0 +1,210 @@
+
+\documentclass{beamer}
+
+% \mode<presentation>
+\usetheme{Luebeck} %Warsaw
+% \usecolortheme{seahorse}
+% \usecolortheme{lily}
+\usecolortheme[RGB={51,255,0}
+]{structure}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+
+\graphicspath{{images/}}
+\newcommand{\FIG}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+\newcommand{\FIGMED}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.75\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\newcommand{\FIGSMALL}[2]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\title{Processing.org workshops\\Workshop 3}
+\author{Open Space Aarhus}
+\date{\today}
+\institute[Bryggervej 30]{Bryggervej 30, 8240 Århus N}
+
+% logo
+\pgfdeclareimage[height=1.3cm]{university-logo}{osaa_logo_neon_rgb}
+\logo{\pgfuseimage{university-logo}}
+
+\begin{document}
+
+\begin{frame}[label=titlepage]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dagens program}
+  \begin{itemize}
+  \item Introduktion
+  \item Resume af sidste gang
+  \item Kode
+    \begin{itemize}
+    \item Løkker
+    \item Arrays
+    \item Funktioner
+    \end{itemize}
+
+  \item Workshop
+    \begin{itemize}
+    \item Billeder
+    \item Partikel System?
+    \end{itemize}
+
+  \item \emph{Afslutning}
+    
+  \end{itemize}						
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{OpenProcessing.org}
+  \begin{block}{Hvad har de flittige lavet}
+    \begin{itemize}
+    \item \url{http://www.openprocessing.org/classrooms/?classroomID=1075}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduktion}
+  
+  \begin{block}{Slides og processing filer}
+    \url{http://poodle/processing}   
+  \end{block}
+  {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Resume}
+  
+  \begin{itemize}
+  \item variable
+  \item operationer
+  \item forgreninger
+  \item snydefysik
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Løkker}
+  
+  {\tiny Løkker bruges til at gentage en stump kode, så længe en betingelse er sand.}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Løkker \emph{while}}
+  
+  {\tiny den simple løkke.}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Løkker \emph{for}}
+
+  {\tiny når man har en tællervariabel}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{En række af figurer}
+
+  {\tiny lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Et gitter af figurer}
+
+  {\tiny lav en ny løkke rundt om så rækken bliver gentaget 10 gange under hinanden. Brug y som tæller. Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger (if) til at tegne forskellige figurer. }
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays}
+  
+  {\tiny en opslagstabel}
+  \begin{itemize}
+  \item deklaration: float[] boldX = new float[10];
+  \item tildeling: boldX[0] = 100; boldX[1] = 120;
+  \item læsning: ellipse(boldX[0], boldX[0], 30, 30);
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays til mange bolde}
+ 
+  \begin{itemize}
+  \item float[] boldX = new float[10];
+  \item float[] boldY = new float[10];
+  \item float[] deltaX = new float[10];
+  \item float[] deltaY = new float[10];
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays og Løkker}
+  
+  {\tiny A match made in heaven}
+   
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner}
+  
+  {\tiny Små genbrugelige stumper kode. Også nyttig til at gøre koden mere overskuelig. Du har allerede brugt en masse funktioner fra processing. Du har også skrevet dine egne fx. setup() og draw(). Nu vil vi lave vore egne}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner}
+  
+  {\tiny funktioner til dagens opgave...?}  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Tak for i dag}
+
+  \begin{itemize}
+  \item Hvad syntes \emph{du} om i dag?
+  \item Næste gang: ?
+  \item $T^3$ i må meget gerne hjælpe med at rydde lokalet.
+  \end{itemize}
+
+  \begin{block}{Klasseværelset}
+    \url{www.openprocessing.org/classrooms/?classroomID=1075}
+  \end{block}
+
+\end{frame}
+\end{document}
+
