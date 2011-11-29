@@ -73,8 +73,7 @@
 
   \item Workshop
     \begin{itemize}
-    \item Billeder
-    \item Partikel System?
+    \item Mange bolde på en gang!
     \end{itemize}
 
   \item \emph{Afslutning}
@@ -102,47 +101,73 @@
   {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Resume}
   
   \begin{itemize}
-  \item variable
-  \item operationer
-  \item forgreninger
-  \item snydefysik
+  \item Variable: \texttt{float boldX = 200;}\\
+  \item Operationer: \texttt{boldX = boldX + deltaX;}\\
+  \item Løkker:
+    \begin{itemize}
+    \item \texttt{while (betingelse) \{ ... \}}\\
+    \item \texttt{for (start; betingelse; opdatering;) \{ ... \}}\\
+    \end{itemize}
+  \item Forgreninger: 
+    \begin{itemize}
+    \item \texttt{if (\emph{x > width}) \{ dx = -dx; \}}\\
+    \item \texttt{if (betingelse) \{ ... \}}\\
+    \item \texttt{if (betingelse) \{ ... \} else \{ ... \}}\\
+    \end{itemize}
+  \item Simpel fysik.
+    \begin{itemize}
+    \item acceleration = summen af kræfter delt med partiklens masse
+    \item ny hastighed = gammel hastighed + acceleration
+    \item ny positioin = gammel position + hastighed
+    \end{itemize}
   \end{itemize}  
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Løkker}
+
+  Lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller
+  \begin{block}{med while-løkken}  
+\begin{verbatim}
+int x = 0;
+while (x < 10) {
+  ellipse(20 + x * 40, 200, 30, 30);
+  x += 1;
+}
+\end{verbatim}  
+  \end{block}
   
-  {\tiny Løkker bruges til at gentage en stump kode, så længe en betingelse er sand.}
-  
+  \begin{block}{med for-løkken}
+\begin{verbatim}
+for (int x = 0; x < 10; x += 1) {
+  ellipse(20 + x * 40, 200, 30, 30);
+}
+\end{verbatim}  
+  \end{block}
+    
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Løkker \emph{while}}
+  \frametitle{Opgave: Et gitter af figurer}
+
+  Lav to løkker indeni hinanden, så rækken bliver gentaget under hinanden. Brug x og y som tæller. 
   
-  {\tiny den simple løkke.}
+  \begin{block}{Løkker i løkker}    
+\begin{verbatim}
+for (int y = 20; y < height; y += 40) {
+  for (int x = 20; x < width; x += 40) {
+    ellipse(x, y, 30, 30);
+  }
+}
+\end{verbatim}  
+  \end{block}
   
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Løkker \emph{for}}
-
-  {\tiny når man har en tællervariabel}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{En række af figurer}
-
-  {\tiny lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Et gitter af figurer}
-
-  {\tiny lav en ny løkke rundt om så rækken bliver gentaget 10 gange under hinanden. Brug y som tæller. Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger (if) til at tegne forskellige figurer. }
+Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger til at tegne forskellige figurer.
+  
 \end{frame}
 
 
