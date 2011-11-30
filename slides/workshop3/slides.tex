@@ -1,0 +1,304 @@
+
+\documentclass{beamer}
+
+% \mode<presentation>
+\usetheme{Luebeck} %Warsaw
+% \usecolortheme{seahorse}
+% \usecolortheme{lily}
+\usecolortheme[RGB={51,255,0}
+]{structure}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+
+\graphicspath{{images/}}
+\newcommand{\FIG}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+\newcommand{\FIGMED}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.75\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\newcommand{\FIGSMALL}[2]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\title{Processing.org workshops\\Workshop 3}
+\author{Open Space Aarhus}
+\date{\today}
+\institute[Bryggervej 30]{Bryggervej 30, 8240 Århus N}
+
+% logo
+\pgfdeclareimage[height=1.3cm]{university-logo}{osaa_logo_neon_rgb}
+\logo{\pgfuseimage{university-logo}}
+
+\begin{document}
+
+\begin{frame}[label=titlepage]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dagens program}
+  \begin{itemize}
+  \item Introduktion
+  \item Resume af sidste gang
+  \item Kode
+    \begin{itemize}
+    \item Løkker
+    \item Arrays
+    \item Funktioner
+    \end{itemize}
+
+  \item Workshop
+    \begin{itemize}
+    \item Mange bolde på en gang!
+    \item Fyrværkeri (fontæne)
+    \end{itemize}
+
+  \item \emph{Afslutning}
+    
+  \end{itemize}						
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{OpenProcessing.org}
+  \begin{block}{Hvad har de flittige lavet}
+    \begin{itemize}
+    \item \url{http://www.openprocessing.org/classrooms/?classroomID=1075}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduktion}
+  
+  \begin{block}{Slides og processing filer}
+    \url{http://poodle/processing}   
+  \end{block}
+  {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Resume}
+  
+  \begin{itemize}
+  \item Variable: \texttt{float boldX = 200;}\\
+  \item Operationer: \texttt{boldX = boldX + deltaX;}\\
+  \item Løkker:
+    \begin{itemize}
+    \item \texttt{while (betingelse) \{ ... \}}\\
+    \item \texttt{for (start; betingelse; opdatering;) \{ ... \}}\\
+    \end{itemize}
+  \item Forgreninger: 
+    \begin{itemize}
+    \item \texttt{if (\emph{x > width}) \{ dx = -dx; \}}\\
+    \item \texttt{if (betingelse) \{ ... \}}\\
+    \item \texttt{if (betingelse) \{ ... \} else \{ ... \}}\\
+    \end{itemize}
+  \item Simpel fysik.
+    \begin{itemize}
+    \item acceleration = summen af kræfter delt med partiklens masse
+    \item ny hastighed = gammel hastighed + acceleration
+    \item ny positioin = gammel position + hastighed
+    \end{itemize}
+  \item Spørgsmål?
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Løkker}
+
+  Lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller
+  \begin{block}{med while-løkken}  
+\begin{verbatim}
+int x = 0;
+while (x < 10) {
+  ellipse(20 + x * 40, 200, 30, 30);
+  x += 1;
+}
+\end{verbatim}  
+  \end{block}
+  
+  \begin{block}{med for-løkken}
+\begin{verbatim}
+for (int x = 0; x < 10; x += 1) {
+  ellipse(20 + x * 40, 200, 30, 30);
+}
+\end{verbatim}  
+  \end{block}
+    
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Opgave: Et gitter af figurer}
+
+  Lav to løkker indeni hinanden, så rækken bliver gentaget under hinanden. Brug x og y som tæller. 
+  
+  \begin{block}{Løkker i løkker}    
+\begin{verbatim}
+for (int y = 20; y < height; y += 40) {
+  for (int x = 20; x < width; x += 40) {
+    ellipse(x, y, 30, 30);
+  }
+}
+\end{verbatim}  
+  \end{block}
+  
+Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger til at tegne forskellige figurer.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays}
+  
+  Et array er en opslagstabel. Man kan lave et array med et fast antal pladser.
+  Derefter kan man skrive og læse værdier på de enkelte pladser i arrayet.
+  
+  \begin{itemize}
+  \item deklaration: float[] boldX = new float[10];
+  \item tildeling: boldX[5] = 100; 
+  \item læsning: ellipse(boldX[5], boldY[5], 30, 30);
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Øvelse til arrays}
+  
+  Skal vi have en lille øvelse med arrays?
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays til mange bolde}
+ 
+  \begin{itemize}
+  \item float[] boldX = new float[10];
+  \item float[] boldY = new float[10];
+  \item float[] deltaX = new float[10];
+  \item float[] deltaY = new float[10];
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays og Løkker}
+  
+  Arrays og løkker er som skabt til hinanden. Vi kan bruge en for-løkke til 
+  at løbe igennem kuglerne og opdatere deres positioner.
+
+\begin{verbatim}
+int ANTAL = 10;
+
+float[] kugleX = new float[ANTAL];
+float[] kugleY = new float[ANTAL];
+float[] deltaX = new float[ANTAL];
+float[] deltaY = new float[ANTAL];
+
+for (int i = 0; i < ANTAL; i++) {
+  kugleX[i] += deltaX[i];
+  kugleY[i] += deltaY[i];
+}
+\end{verbatim}
+  
+   
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Demo}
+  
+  Kanoneksemplet udvidet til at skyde med flere kanonkugler samtidigt.
+  
+  http://www.openprocessing.org/visuals/?visualID=47076
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner}
+  
+  Små genbrugelige stumper kode. Også nyttig til at gøre koden mere overskuelig.\\
+  \vspace{0.5cm}
+  Du har allerede brugt en masse funktioner fra processing. Du har også skrevet dine egne fx. setup() og draw(). Nu vil vi lave vore helt egne.
+  
+  \begin{block}{En funktion:} 
+  \begin{itemize}
+  \item kan tage input via parametre
+  \item kan returnere et output
+  \item kan have sideeffekter (f.eks. tegne på skærmen)
+  \end{itemize}
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner}
+    
+\begin{verbatim}
+returtype navn(parametre) {
+ // implementation
+}
+\end{verbatim}
+  
+  \begin{block}{Eksempler}
+\begin{verbatim}
+float doubleUp(float value) {
+  return value * 2;
+}
+
+void draw() {
+}
+
+float sumOf(float a, float b) {
+  return a + b;
+}
+\end{verbatim}    
+  \end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Tak for i dag}
+
+  \begin{itemize}
+  \item Hvad syntes \emph{du} om i dag?
+  \item Næste gang: ?
+  \item $T^3$ i må meget gerne hjælpe med at rydde lokalet.
+  \end{itemize}
+
+  \begin{block}{Klasseværelset}
+    \url{www.openprocessing.org/classrooms/?classroomID=1075}
+  \end{block}
+
+\end{frame}
+\end{document}
+
