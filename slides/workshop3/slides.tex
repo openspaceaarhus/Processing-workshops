@@ -74,6 +74,7 @@
   \item Workshop
     \begin{itemize}
     \item Mange bolde på en gang!
+    \item Fyrværkeri (fontæne)
     \end{itemize}
 
   \item \emph{Afslutning}
@@ -124,6 +125,7 @@
     \item ny hastighed = gammel hastighed + acceleration
     \item ny positioin = gammel position + hastighed
     \end{itemize}
+  \item Spørgsmål?
   \end{itemize}  
 \end{frame}
 
@@ -237,17 +239,51 @@ for (int i = 0; i < ANTAL; i++) {
   
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Funktioner}
-  
-  {\tiny Små genbrugelige stumper kode. Også nyttig til at gøre koden mere overskuelig. Du har allerede brugt en masse funktioner fra processing. Du har også skrevet dine egne fx. setup() og draw(). Nu vil vi lave vore egne}  
-\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Funktioner}
   
-  {\tiny funktioner til dagens opgave...?}  
+  Små genbrugelige stumper kode. Også nyttig til at gøre koden mere overskuelig.\\
+  \vspace{0.5cm}
+  Du har allerede brugt en masse funktioner fra processing. Du har også skrevet dine egne fx. setup() og draw(). Nu vil vi lave vore helt egne.
+  
+  \begin{block}{En funktion:} 
+  \begin{itemize}
+  \item kan tage input via parametre
+  \item kan returnere et output
+  \item kan have sideeffekter (f.eks. tegne på skærmen)
+  \end{itemize}
+  \end{block}
+
 \end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner}
+    
+\begin{verbatim}
+returtype navn(parametre) {
+ // implementation
+}
+\end{verbatim}
+  
+  \begin{block}{Eksempler}
+\begin{verbatim}
+float doubleUp(float value) {
+  return value * 2;
+}
+
+void draw() {
+}
+
+float sumOf(float a, float b) {
+  return a + b;
+}
+\end{verbatim}    
+  \end{block}
+
+\end{frame}
+
 
 
 \begin{frame}
