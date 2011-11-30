@@ -61,25 +61,46 @@
 
 \begin{frame}
   \frametitle{Dagens program}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+  
   \begin{itemize}
   \item Introduktion
   \item Resume af sidste gang
   \item Kode
     \begin{itemize}
-    \item Løkker
-    \item Arrays
+    \item Arrays og løkker
     \item Funktioner
+    \item Klasser
     \end{itemize}
 
-  \item Workshop
+  \item Grafik
     \begin{itemize}
     \item Mange bolde på en gang!
     \item Fyrværkeri (fontæne)
+    \item Partikelsjov
     \end{itemize}
 
   \item \emph{Afslutning}
-    
   \end{itemize}						
+
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+      \FIG{dagensprogram}{Workshop 3}
+    \end{column}
+  \end{columns}
+    
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduktion}
+  
+  \begin{block}{Slides og processing filer}
+    \url{http://poodle/processing}   
+  \end{block}
+  {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
 \end{frame}
 
 
@@ -93,17 +114,9 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Introduktion}
-  
-  \begin{block}{Slides og processing filer}
-    \url{http://poodle/processing}   
-  \end{block}
-  {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
-\end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Resume}
+  \frametitle{Resume af sidste gang}
   
   \begin{itemize}
   \item Variable: \texttt{float boldX = 200;}\\
@@ -115,9 +128,9 @@
     \end{itemize}
   \item Forgreninger: 
     \begin{itemize}
-    \item \texttt{if (\emph{x > width}) \{ dx = -dx; \}}\\
     \item \texttt{if (betingelse) \{ ... \}}\\
     \item \texttt{if (betingelse) \{ ... \} else \{ ... \}}\\
+    \item \texttt{if (\emph{x > width}) \{ dx = -dx; \}}\\
     \end{itemize}
   \item Simpel fysik.
     \begin{itemize}
@@ -129,8 +142,92 @@
   \end{itemize}  
 \end{frame}
 
+
 \begin{frame}[fragile]
-  \frametitle{Løkker}
+  \frametitle{More, More, MOOOOOOOOOREEE!!!}
+  
+  Vi vil have flere bolde på skærmen på samme tid!
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Erklæring}
+\begin{verbatim}
+float bold1X;
+float bold1Y;
+float delta1X;
+float delta1Y;
+
+float bold2X;
+float bold2Y;
+float delta2X;
+float delta2Y;
+\end{verbatim}
+      \end{block}
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Opdatering}
+\begin{verbatim}
+bold1X += delta1X;
+bold1Y += delta1Y;
+
+bold2X += delta2X;
+bold2Y += delta2Y;
+
+if (bold1X > width) ...
+
+if (bold2X > width) ...
+\end{verbatim}
+      \end{block}
+    \end{column}
+  \end{columns}
+  
+  Hvad så med 100 bolde? Der må være en nemmere måde...
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays}
+  
+  Et array er en opslagstabel. Man kan lave et array med et fast antal pladser.
+  Derefter kan man skrive og læse værdier på de enkelte pladser i arrayet.
+  
+  \begin{block}{Syntax}
+  \begin{itemize}
+  \item erklæring: type[] navn;
+  \item initialisering: float[] boldX = new float[10];
+  \item tildeling: boldX[5] = 100; 
+  \item læsning: ellipse(boldX[5], boldY[5], 30, 30);
+  \end{itemize}
+  \end{block}
+  
+  Bemærk at det første element i et array har indeks 0. Det vil fx sige at et array med 10 elementer indekseres med tallene 0-9.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays til mange bolde}
+  
+  Hvis vi laver variablene for bolden om til arrays, kan vi holde styr
+  på tilstanden af mange bolde.
+ 
+  \begin{block}{Boldenes tilstandsvariable som arrays}
+\begin{verbatim}
+float[] boldX = new float[10];
+float[] boldY = new float[10];
+
+float[] deltaX = new float[10];
+float[] deltaY = new float[10];
+\end{verbatim}
+  \end{block}
+  
+  Nu kan vi bruge løkker til at opdatere og tegne boldene.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Sidespring: Demonstration af Løkker}
 
   Lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller
   \begin{block}{med while-løkken}  
@@ -174,44 +271,10 @@ Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug e
 
 
 \begin{frame}[fragile]
-  \frametitle{Arrays}
-  
-  Et array er en opslagstabel. Man kan lave et array med et fast antal pladser.
-  Derefter kan man skrive og læse værdier på de enkelte pladser i arrayet.
-  
-  \begin{itemize}
-  \item deklaration: float[] boldX = new float[10];
-  \item tildeling: boldX[5] = 100; 
-  \item læsning: ellipse(boldX[5], boldY[5], 30, 30);
-  \end{itemize}
-  
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Øvelse til arrays}
-  
-  Skal vi have en lille øvelse med arrays?
-  
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Arrays til mange bolde}
- 
-  \begin{itemize}
-  \item float[] boldX = new float[10];
-  \item float[] boldY = new float[10];
-  \item float[] deltaX = new float[10];
-  \item float[] deltaY = new float[10];
-  \end{itemize}
-  
-\end{frame}
-
-\begin{frame}[fragile]
   \frametitle{Arrays og Løkker}
   
   Arrays og løkker er som skabt til hinanden. Vi kan bruge en for-løkke til 
-  at løbe igennem kuglerne og opdatere deres positioner.
+  at løbe igennem alle kuglerne og opdatere deres positioner.
 
 \begin{verbatim}
 int ANTAL = 10;
@@ -231,13 +294,32 @@ for (int i = 0; i < ANTAL; i++) {
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Demo}
+  \frametitle{Så skal der kodes!}
   
   Kanoneksemplet udvidet til at skyde med flere kanonkugler samtidigt.
   
   http://www.openprocessing.org/visuals/?visualID=47076
-  
+    
 \end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Fra kanon til fontæne}
+  
+  \begin{block}{Slagplan}
+    \begin{itemize}
+    \item skyd automatisk
+    \item mindre kugler
+    \item flere kugler
+    \item hold styr på kuglernes alder
+    \item ændr kuglernes farve baseret på deres alder
+    \end{itemize}
+  \end{block}
+  
+  http://www.openprocessing.org/visuals/?visualID=47191
+    
+\end{frame}
+
 
 
 \begin{frame}[fragile]
@@ -284,6 +366,19 @@ float sumOf(float a, float b) {
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Klasser}
+
+  \begin{itemize}
+  \item Samler variable og de funktioner der benytter variablene i en logisk enhed
+  \item Objektorienteret programmering
+  \item Genbrugelig
+  \item Abstraktion
+  \item Masser af nyttige klasser på nettet
+  \item Man behøver ikke forstå implementationen for at bruge dem! 
+  \end{itemize}
+
+\end{frame}
 
 
 \begin{frame}
@@ -292,7 +387,7 @@ float sumOf(float a, float b) {
   \begin{itemize}
   \item Hvad syntes \emph{du} om i dag?
   \item Næste gang: ?
-  \item $T^3$ i må meget gerne hjælpe med at rydde lokalet.
+  \item $T^3$ på tirsdag. I må meget gerne hjælpe med at rydde lokalet.
   \end{itemize}
 
   \begin{block}{Klasseværelset}
