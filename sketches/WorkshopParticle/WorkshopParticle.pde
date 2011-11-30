@@ -3,10 +3,10 @@
  * And a "generic particle"
  * Uncomment some lines for OpenGL
  */
-//import processing.opengl.*;
-//import javax.media.opengl.*; 
+import processing.opengl.*;
+import javax.media.opengl.*; 
 
-int W = 400, H = 400;
+int W = 600, H = 600;
 float CX = W/2, CY = H/2;
 
 int NUM = 100;
@@ -17,10 +17,12 @@ boolean drawLines = true;
 boolean drawBalls = false;
 
 void setup() {
-  //  size(W, H, OPENGL);
-  size(400, 400);
+  size(W, H, OPENGL);
+  hint(DISABLE_OPENGL_2X_SMOOTH);
+  hint(ENABLE_OPENGL_4X_SMOOTH);
+  //size(400, 400);
   ellipseMode(CENTER);
-  colorMode(HSB);
+  //  colorMode(HSB);
   reset();
   background(0);
   smooth();
@@ -43,21 +45,26 @@ void reset() {
 
 void draw() {
 
-  /*openGL fun
-   PGraphicsOpenGL pgl = (PGraphicsOpenGL) g;  // g may change
-   GL gl = pgl.gl; 
-   // This fixes the overlap issue
-   gl.glDisable(GL.GL_DEPTH_TEST);
-   // Turn on the blend mode
-   gl.glEnable(GL.GL_BLEND);
-   gl.glBlendFunc(GL.GL_ZERO, GL.GL_ONE_MINUS_SRC_ALPHA);
-   */
-  fill(0, 0, 0, 20);
+  //openGL fun
+  PGraphicsOpenGL pgl = (PGraphicsOpenGL) g;  // g may change
+  GL gl = pgl.gl; 
+  // This fixes the overlap issue
+  gl.glDisable(GL.GL_DEPTH_TEST);
+  //smoothing
+  gl.glEnable (GL.GL_LINE_SMOOTH);
+  gl.glEnable(GL.GL_POLYGON_SMOOTH);
+
+  // Turn on the blend mode
+  gl.glEnable(GL.GL_BLEND);
+  gl.glBlendFunc(GL.GL_ZERO, GL.GL_ONE_MINUS_SRC_ALPHA);
+
+  fill(0, 0, 0, 18);
+  rectMode(CORNER);
   rect(0, 0, W, H);
-  /*
+
   // Define the openGL blend mode
-   gl.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
-   */
+  gl.glBlendFunc(GL.GL_ONE, GL.GL_ONE);
+
   noFill();
   stroke(23, 355, 255);
   strokeWeight(3);
@@ -91,8 +98,9 @@ void draw() {
     }
     if (drawLines) {
       noFill();
-      strokeWeight(1.3);
-      stroke(p.age/3, 255, 255);
+      strokeWeight(2.3);
+    
+      stroke(p.getColor());
       if (last != null && i%sqrt(NUM) != 0 ) {
         line(p.pos.x, p.pos.y, last.x, last.y);
       }

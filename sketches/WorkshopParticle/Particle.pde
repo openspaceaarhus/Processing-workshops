@@ -4,14 +4,14 @@ public class Particle {
   float dampening = .9996;
   PVector acc;
   float dt = .60;
-  float R = 4.4; //radius
+  float R = 1.4; //radius
   int age;
 
   public Particle(float x, float y) {
     this.pos = new PVector(x, y);
     this.vel = new PVector();
     this.acc = new PVector(); 
-   age = 0; 
+    age = 0;
   }
 
   void tick() {
@@ -27,10 +27,13 @@ public class Particle {
   }
 
   void draw() {
-    fill(age, 255, 255);
+    fill(getColor());
     noStroke();
-    ellipseMode(CENTER);
-    ellipse(pos.x, pos.y, 2*R, 2*R);
+    //    ellipseMode(CENTER);
+    //  ellipse(pos.x, pos.y, 2*R, 2*R);
+    //openGL likes quads...
+    rectMode(CENTER);
+    rect(pos.x, pos.y, 2*R, 2*R);
   }
 
   //borrowed from Daniel Shiftman
@@ -60,5 +63,11 @@ public class Particle {
   void  displayVector() {
     displayVector(vel, pos.x, pos.y, R);
   }
+  
+  color getColor() {
+      float c = (float)(age%512) / 512.0;
+       return color(c*255, (1-c)*255, 29);
+  }
+  
 }
 
