@@ -136,7 +136,7 @@
     \begin{itemize}
     \item acceleration = summen af kræfter delt med partiklens masse
     \item ny hastighed = gammel hastighed + acceleration
-    \item ny positioin = gammel position + hastighed
+    \item ny position = gammel position + hastighed
     \end{itemize}
   \item Spørgsmål?
   \end{itemize}  
@@ -227,7 +227,7 @@ float[] deltaY = new float[10];
 
 
 \begin{frame}[fragile]
-  \frametitle{Sidespring: Demonstration af Løkker}
+  \frametitle{To måder at lave en løkke med tæller-variabel på}
 
   Lav en løkke som tegner 10 bolde ved siden af hinanden. Brug x som tæller
   \begin{block}{med while-løkken}  
@@ -251,7 +251,7 @@ for (int x = 0; x < 10; x += 1) {
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Opgave: Et gitter af figurer}
+  \frametitle{Et gitter af figurer}
 
   Lav to løkker indeni hinanden, så rækken bliver gentaget under hinanden. Brug x og y som tæller. 
   
@@ -265,7 +265,7 @@ for (int y = 20; y < height; y += 40) {
 \end{verbatim}  
   \end{block}
   
-Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger til at tegne forskellige figurer.
+"Hjemmeopgave": Prøv at bruge x og y eller random() til at styre farve eller størrelse. Brug evt forgreninger til at tegne forskellige figurer.
   
 \end{frame}
 
@@ -296,10 +296,24 @@ for (int i = 0; i < ANTAL; i++) {
 \begin{frame}[fragile]
   \frametitle{Så skal der kodes!}
   
+  \begin{block}{Udgangspunktet}
+  Kanoneksemplet fra sidste gang
+  
+  http://www.openprocessing.org/visuals/?visualID=46710
+  \end{block}
+    
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Så skal der kodes!}
+      
+  \begin{block}{Resultatet}
   Kanoneksemplet udvidet til at skyde med flere kanonkugler samtidigt.
   
   http://www.openprocessing.org/visuals/?visualID=47076
-    
+  \end{block}
+
 \end{frame}
 
 
@@ -315,11 +329,17 @@ for (int i = 0; i < ANTAL; i++) {
     \item ændr kuglernes farve baseret på deres alder
     \end{itemize}
   \end{block}
-  
-  http://www.openprocessing.org/visuals/?visualID=47191
     
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Så skal der kodes!}
+      
+  \begin{block}{Resultatet}  
+  http://www.openprocessing.org/visuals/?visualID=47191
+  \end{block}
+
+\end{frame}
 
 
 \begin{frame}[fragile]
@@ -371,11 +391,11 @@ float sumOf(float a, float b) {
 
   \begin{itemize}
   \item Samler variable og de funktioner der benytter variablene i en logisk enhed
-  \item Objektorienteret programmering
   \item Genbrugelig
-  \item Abstraktion
   \item Masser af nyttige klasser på nettet
   \item Man behøver ikke forstå implementationen for at bruge dem! 
+  \item Abstraktion
+  \item Objektorienteret programmering
   \end{itemize}
 
 \end{frame}
