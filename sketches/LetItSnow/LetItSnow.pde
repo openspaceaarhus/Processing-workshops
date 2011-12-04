@@ -9,7 +9,7 @@ PImage img;
 
 void setup() {
   size(600, 400, P2D);
-  img = loadImage("osaa.png");
+  img = loadImage("osaa2.png");
   snow_init();
 }
 
@@ -61,32 +61,52 @@ void draw() {
 
     if (c != BACKGROUND) {
       flakes[i] = createFlake();
-      int below = idx+width;
-      //move to surface
-      while (below < (width*height) && bg[below] == BACKGROUND ) {
-        idx = below;
-        below+=width;
-      }
-      //smooth by putting it below if it would be 'a tower'
-      if (1 + below < (width*height)) {
-        if (bg[below+1] == BACKGROUND && 
-          bg[below+1] == BACKGROUND)
-          idx = below + (random(0, 1)>.5 ? 1 : -1);
-      }
-
-
       bg[idx] = FLAKECOLOR;
     } 
     if (y > height) flakes[i] = createFlake();
   }
   updatePixels();
+  smooth_snow();
 }
 
-/*
-void mouseMoved() {
- println("mouse = " + get(mouseX, mouseY));
- }
- */
+boolean isEmpty(int x, int y) {
+    if (x < 0 || x >= width)
+	return false;
+    if (y < 0 || y >= height)
+	return false;
+    return bg[y * width + x] == BACKGROUND;
+}
+
+void smooth_snow() {
+
+    for(int y = 0; y < height; y++) {
+	for(int x = 0; x < width; x++) {
+	    int idx = y * width + x;
+	    if (FLAKECOLOR != bg[idx]) 
+		continue;
+
+	    //fall if possible
+	    if (isEmpty(x, y+1)) {
+		bg[idx] = BACKGROUND;
+		bg[idx+width] = FLAKECOLOR;
+		continue;
+	    }
+
+	    //roll if possible
+	    boolean leftEmpty = isEmpty(x-1,y+1);
+	    boolean rightEmpty = isEmpty(x+1,y+1);
+	    if (leftEmpty || rightEmpty) {
+		bg[idx] = BACKGROUND;
+		if (leftEmpty ^ rightEmpty) {
+		    bg[idx + (rightEmpty ? 1 : -1)] = FLAKECOLOR; 
+		} else {
+		    bg[idx + (random(0,1)>.5 ? 1 : -1)] = FLAKECOLOR; 
+		}
+	    } 
+	
+	}
+    }
+}
 
 void mousePressed() {
   snow_init();
