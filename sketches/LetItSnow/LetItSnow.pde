@@ -1,4 +1,4 @@
-final int CNT = 1000;
+final int CNT = 500;
 final color BACKGROUND = color(0);
 final color FLAKECOLOR = color(255, 255, 255);
 Particle[] flakes;
@@ -10,7 +10,7 @@ PImage img;
 
 void setup() {
   size(600, 400, P2D);
-  img = loadImage("osaa2.png");
+  img = loadImage("osaa3.png");
   snow_init();
 }
 
@@ -79,21 +79,34 @@ boolean isEmpty(int x, int y) {
     return bg[y * width + x] == BACKGROUND;
 }
 
+void setBG(int idx, color c) {
+    bg[idx] = c;
+    updates[idx] = frameCount;
+}
+
 void smooth_snow() {
     
     for(int y = 0; y < height; y++) {
 	for(int x = 0; x < width; x++) {
 	    int idx = y * width + x;
-	    if (FLAKECOLOR != bg[idx]) 
-		continue;
-	    if (updates[idx] == frameCount)
+	    if (FLAKECOLOR != bg[idx]
+		|| updates[idx] == frameCount) 
 		continue;
 
+	    int next_idx = idx;
+	    float p = random(0,1);	    
 	    //fall if possible
 	    if (isEmpty(x, y+1)) {
-		bg[idx] = BACKGROUND;
-		bg[idx+width] = FLAKECOLOR;
-		updates[idx+width] = frameCount;
+		setBG(idx, BACKGROUND);
+		//perhaps move sideways
+		if ( p > .8) {
+		    if (p > .9 && isEmpty(x+1, y+1))
+			next_idx++;
+		    else if (isEmpty(x-1, y+1))
+			next_idx--;
+		}
+		next_idx += width;
+		setBG(next_idx, FLAKECOLOR);
 		continue;
 	    }
 
@@ -101,17 +114,31 @@ void smooth_snow() {
 	    boolean leftEmpty = isEmpty(x-1,y+1);
 	    boolean rightEmpty = isEmpty(x+1,y+1);
 	    if (leftEmpty || rightEmpty) {
-		bg[idx] = BACKGROUND;
-		idx = idx + width;
+		setBG(idx, BACKGROUND);
+		next_idx += width;
 		if (leftEmpty ^ rightEmpty) {
-		    idx += (rightEmpty ? 1 : -1);
+		    next_idx += (rightEmpty ? 1 : -1);
 		} else {
-		    idx += (random(0,1)>.5 ? 1 : -1);
+		    next_idx += (random(0,1)>.5 ? 1 : -1);
 		}
-		updates[idx] = frameCount;
-		bg[idx] = FLAKECOLOR;
-	    } 
-	
+		setBG(next_idx, FLAKECOLOR);
+		continue;
+	    }
+
+	    //avoid pyramids
+	    //by perhaps move sideways
+	    if ( p > .8) {
+		if (p > .9 && isEmpty(x+1, y)) {
+		    next_idx++;
+		} else if (isEmpty(x-1, y)) {
+		    next_idx--;
+		} else
+		    continue;
+		setBG(idx, BACKGROUND);
+		setBG(next_idx, FLAKECOLOR);
+		
+	    }
+
 	}
     }
 }
