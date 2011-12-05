@@ -4,6 +4,7 @@ final color FLAKECOLOR = color(255, 255, 255);
 Particle[] flakes;
 
 int[] bg;
+int[] updates;
 
 PImage img;
 
@@ -16,6 +17,7 @@ void setup() {
 void snow_init() {
 
   bg = new int[width * height];
+  updates = new int[width * height];
   loadPixels();
   background(BACKGROUND);
   image(img, 0, 0, width, height);
@@ -78,17 +80,20 @@ boolean isEmpty(int x, int y) {
 }
 
 void smooth_snow() {
-
+    
     for(int y = 0; y < height; y++) {
 	for(int x = 0; x < width; x++) {
 	    int idx = y * width + x;
 	    if (FLAKECOLOR != bg[idx]) 
+		continue;
+	    if (updates[idx] == frameCount)
 		continue;
 
 	    //fall if possible
 	    if (isEmpty(x, y+1)) {
 		bg[idx] = BACKGROUND;
 		bg[idx+width] = FLAKECOLOR;
+		updates[idx+width] = frameCount;
 		continue;
 	    }
 
@@ -97,11 +102,14 @@ void smooth_snow() {
 	    boolean rightEmpty = isEmpty(x+1,y+1);
 	    if (leftEmpty || rightEmpty) {
 		bg[idx] = BACKGROUND;
+		idx = idx + width;
 		if (leftEmpty ^ rightEmpty) {
-		    bg[idx + (rightEmpty ? 1 : -1)] = FLAKECOLOR; 
+		    idx += (rightEmpty ? 1 : -1);
 		} else {
-		    bg[idx + (random(0,1)>.5 ? 1 : -1)] = FLAKECOLOR; 
+		    idx += (random(0,1)>.5 ? 1 : -1);
 		}
+		updates[idx] = frameCount;
+		bg[idx] = FLAKECOLOR;
 	    } 
 	
 	}
