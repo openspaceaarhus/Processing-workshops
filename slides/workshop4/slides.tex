@@ -1,0 +1,534 @@
+\documentclass{beamer}
+
+% \mode<presentation>
+\usetheme{Luebeck} %Warsaw
+% \usecolortheme{seahorse}
+% \usecolortheme{lily}
+\usecolortheme[RGB={51,255,0}]{structure}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+
+\graphicspath{{images/}}
+\newcommand{\FIG}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+\newcommand{\FIGMED}[2]{
+  \begin{figure}[]
+    \centering
+    \includegraphics[width=0.75\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\newcommand{\FIGSMALL}[2]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth,keepaspectratio]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+
+\title{Processing.org workshops\\Workshop 4}
+\author{Open Space Aarhus}
+\date{\today}
+\institute[Bryggervej 30]{Bryggervej 30, 8240 Århus N}
+
+% logo
+\pgfdeclareimage[height=1.3cm]{university-logo}{osaa_logo_neon_rgb}
+\logo{\pgfuseimage{university-logo}}
+
+\begin{document}
+
+\begin{frame}[label=titlepage]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dagens program}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+  
+  \begin{itemize}
+  \item Introduktion
+  \item Resume af sidste gang
+  \item Kode
+    \begin{itemize}
+    \item Klasser
+    \end{itemize}
+
+  \item Grafik
+    \begin{itemize}
+    \item Billeder
+    \item Fonte (Tekst)
+    \item Snevejr
+    \item Pixel-pushing - måske
+    \end{itemize}
+
+  \item \emph{Afslutning}
+  \end{itemize}						
+
+    \end{column}
+    
+%    \begin{column}{0.5\textwidth}
+%      \FIG{dagensprogram}{Workshop 3}
+%    \end{column}
+  \end{columns}
+    
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduktion}
+  
+  \begin{block}{Slides og processing filer}
+    \url{http://poodle/processing}   
+  \end{block}
+  {\tiny Slides kan sikkert bruges til at kigge i eller kopiere fra.}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{OpenProcessing.org}
+  \begin{block}{Hvad har de flittige lavet}
+    \begin{itemize}
+    \item \url{http://www.openprocessing.org/classrooms/?classroomID=1075}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Resume af sidste gang}
+  
+  \begin{itemize}
+  \item Kode
+    \begin{itemize}
+    \item Arrays:
+      \begin{itemize}
+      \item \texttt{float[] boldX = new float[10];}\\
+      \item \texttt{boldX[5] = 200;}\\
+      \item \texttt{ellipse(boldX[5], boldY[5], 5, 5);}\\
+      \end{itemize}
+    \item Løkker:
+      \begin{itemize}
+      \item \texttt{while (betingelse) \{ ... \}}\\
+      \item \texttt{for (start; betingelse; opdatering;) \{ ... \}}\\
+      \end{itemize}
+    \end{itemize}
+  \item Grafik
+    \begin{itemize}
+    \item Mange bolde
+    \item Fyrværkeri
+    \end{itemize}  
+  \item Spørgsmål?
+  \end{itemize}  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Det er jo jul!}
+  
+  \begin{itemize}
+  \item Et animeret julekort
+  \item Snevejr for at fortsætte partikel temaet
+  \item Brug klasser til at strukturere koden
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Snefnug}
+  
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+\begin{verbatim}
+float posX = 200;
+float posY = 200;
+float velX = 0;
+float velY = 1;
+\end{verbatim}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+\begin{verbatim}
+  posX += velX;
+  posY += velY;
+  
+  if (posY > height) {
+    posY = 0;
+  }
+\end{verbatim}  
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Funktioner - fra sidste gang}
+    
+\begin{verbatim}
+returtype navn(parametre) {
+ // implementation
+}
+\end{verbatim}
+  
+  \begin{block}{Eksempler}
+  {\tiny
+\begin{verbatim}
+void draw() {
+}
+
+void drawTarget(float x, float y) {
+  fill(255, 0, 0);
+  ellipse(x, y, 40, 40);
+  fill(255, 255, 255);  
+  ellipse(x, y, 30, 30);
+  fill(255, 0, 0);
+  ellipse(x, y, 10, 10);  
+}
+
+float vinkelTilMus(float x, float y) {
+  return atan2(mouseY - y, mouseX - x);
+}
+
+\end{verbatim}    
+}
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Snefnug med funktioner}
+ 
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+\begin{verbatim}
+void update() {
+  posX += velX;
+  posY += velY;
+  
+  if (posY > height) {
+    posY = 0;
+  }
+}
+
+void paint() {
+  ellipse(posX, posY, 10, 10);  
+}
+\end{verbatim}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+\begin{verbatim}
+void draw() {
+  background(50, 100, 200);
+  update();
+  paint();
+}\end{verbatim}  
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Klasser}
+
+  \begin{itemize}
+  \item Brugerdefinerede datatyper
+  \item Samler variable og de funktioner der benytter variablene i en logisk enhed
+  \item Genbrugelig
+  \item Masser af nyttige klasser på nettet
+  \item Man behøver ikke forstå implementationen for at bruge dem! 
+  \item Abstraktion
+  \item Objektorienteret programmering
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Klasser og Objekter}
+
+  \begin{block}{Klasser}
+  Abstrakt beskrivelse so alle objekter af typen overholder 
+  Definerer hvilke variable og funktioner der er tilgængelige.
+  
+  En brugerdefineret datatype.
+  \end{block}
+  
+  \begin{block}{Objekter}
+  Faktiske instanser af klassen. De "virkelige" objekter som
+  man arbejder med.
+  
+  En variabel af typen.
+  \end{block}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Din første klasse}
+
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+{\small
+\begin{verbatim}
+class Fnug {
+  float posX = 200;
+  float posY = 200;
+  float velX = 0;
+  float velY = 1;
+
+  void update() {
+    posX += velX;
+    posY += velY;
+    if (posY > height) {
+      posY = 0;
+    }
+  }
+  
+  void paint() {
+    ellipse(posX, posY, 10, 10);  
+  }
+}
+\end{verbatim}
+}
+  \end{column}
+  
+  \begin{column}{0.5\textwidth}
+{\small
+\begin{verbatim}
+
+// variabel af typen Fnug
+// initialiseret til et nyt Fnug objekt
+Fnug fnug = new Fnug();
+
+void draw() {
+  background(50, 100, 200);
+  fnug.update();
+  fnug.paint();
+}
+\end{verbatim}  
+}
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Tabs}
+  
+  \begin{itemize}
+  \item{Brug tabs til at organisere koden}
+  \item{God ide: En tab per klasse}
+  \item{Giv tab'en samme navn som klassen}
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays - fra sidste gang}
+  
+  Et array er en opslagstabel. Man kan lave et array med et fast antal pladser.
+  Derefter kan man skrive og læse værdier på de enkelte pladser i arrayet.
+  
+  \begin{block}{Syntax}
+  \begin{itemize}
+  \item erklæring: type[] navn;
+  \item initialisering: float[] boldX = new float[10];
+  \item tildeling: boldX[5] = 100; 
+  \item læsning: ellipse(boldX[5], boldY[5], 30, 30);
+  \end{itemize}
+  \end{block}
+  
+  Bemærk at det første element i et array har indeks 0. Det vil fx sige at et array med 10 elementer indekseres med tallene 0-9.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Arrays af objekter}
+  
+  \begin{itemize}
+  \item Erklæring:  {\texttt Fnug[] snevejr;}
+  \item Initialisering:  {\texttt Fnug[] snevejr = new Fnug[10];}
+  \item Tildeling:  {\texttt snevejr[5] = new Fnug();} VIGTIGT!!!
+  \item Metodekald:  {\texttt snevejr[5].update(); }  
+  \item Læsning:  {\texttt Fnug fnug = snevejr[5];}
+  \item Metodekald:  {\texttt fnug.update(); }
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Skrifttyper}
+  \begin{itemize}
+  \item Klassen PFont holder en skrifttype
+  \item Brug Tools/Create Font
+  \item Filen ender i en data folder
+  \item Variabel der kan holde en font
+    \begin{itemize}
+    \item \texttt{PFont font;}
+    \end{itemize}
+  \item Indlæs font
+    \begin{itemize}
+    \item \texttt{font = loadFont("Verdana-Bold-48.vlw");}
+    \end{itemize}
+  \item Vælg font
+    \begin{itemize}
+    \item \texttt{textFont(font, 100);}
+    \end{itemize}
+  \item Tegn tekst
+    \begin{itemize}
+    \item \texttt{text("God Jul", 100, 100);}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Billeder - Indlæs og tegn}
+  \begin{itemize}
+  \item Klassen PImage repræsenterer et billede
+  \item Variabel der kan holde et billede
+    \begin{itemize}
+    \item \texttt{PImage img;}
+    \end{itemize}
+  \item Indlæs billede
+    \begin{itemize}
+    \item \texttt{img = loadImage("osaa.png");}
+    \end{itemize}
+  \item Tegn billede
+    \begin{itemize}
+    \item \texttt{image(img, x, y, width, height);}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Pixels - teori}
+  \begin{itemize}
+  \item Direkte adgang til pixel data
+  \item Een kontinuerlig blok i hukommelsen
+  \item Skal selv udregne indeks fra x,y koordinater
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pixels - læs og skriv}
+  \begin{itemize}
+  \item readPixels()
+  \item pixels[x + y * width] = color(255);
+  \item color c = pixels[x + y * width];
+  \item updatePixels()
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Snevejr}
+  \begin{itemize}
+  \item Brug Fnug klassen til at simulere svævende fnug
+  \item Brug \texttt{pixels} arrayet til at sætte fastlåste fnug
+  \item Test for kollision med pixels
+  \item Udfordring: Undgå tårne og pyramider
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Libraries / Biblioteker}
+  \begin{itemize}
+  \item Eksempler på indbyggede
+    \begin{itemize}
+    \item PFont - skrifttyper
+    \item PImage - indlæs bitmap-baserede billeder
+    \item PVector - en matematisk vektor
+    \item OpenGL - 3D grafik og hardware acceleration
+    \item Minim - Lyd input og output
+    \end{itemize}
+  \item Eksempler på udvidelser
+    \begin{itemize}
+    \item controlP5 - GUI
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tak for denne gang}
+
+  \begin{itemize}
+  \item Hvad syntes \emph{du} om workshoppen?
+  \item Hvad så nu?
+  \end{itemize}
+
+  \begin{block}{Klasseværelset}
+    \url{www.openprocessing.org/classrooms/?classroomID=1075}
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Resume}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item Variable
+      \item Primitive datatyper
+      \item Operatorer
+      \item Forgreninger
+      \item Løkker
+      \item Funktioner
+      \item Arrays
+      \item Klasser
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}        
+      \begin{itemize}
+      \item Koordinatsystemet
+      \item Farver
+      \item Tegnefunktioner
+      \item Input fra tastatur og mus
+      \item Simpel partikel simulering
+      \item Billeder
+      \item Pixeldata
+      \end{itemize}
+    \end{column}
+  \end{columns}    
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Hvad så nu}
+      \begin{itemize}
+      \item På egen hånd
+      \item Kontaktsport!
+      \item Kom og spørg
+      \item Næste år
+        \begin{itemize}
+        \item Tema-kode-aftener
+        \end{itemize}
+      \end{itemize}
+\end{frame}
+
+\end{document}
+
