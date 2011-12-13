@@ -1,9 +1,11 @@
 /**
+ * En kanon som kan dreje og skyde en kanonkugle afsted
+ * Drej kanonen med piletasterne og skyd med mellemrumstasten
+ *
  * Processing Workshop 2
  * Open Space Aarhus 
- * http://gfx.osaa.dk
  *
- * Drej kanonen med piletasterne og skyd med mellemrumstasten
+ * http://gfx.osaa.dk
  */
 
 // kanonkuglens position

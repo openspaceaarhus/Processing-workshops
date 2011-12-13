@@ -1,11 +1,15 @@
 import processing.opengl.*;
 
 /**
- * Processing Workshop 2
- * Open Space Aarhus 
- * http://gfx.osaa.dk
+ * En fontæne som skyder masser af gnister afsted.
  *
  * Drej kanonen med piletasterne og skyd med mellemrumstasten
+ * Kan også styres med musen
+ *
+ * Processing Workshop 3
+ * Open Space Aarhus 
+ *
+ * http://gfx.osaa.dk
  */
 
 final int ANTAL = 400;

@@ -1,3 +1,14 @@
+/**
+ * Denne Fnug klasse indkapsler tilstanden for et snefnug
+ * samt de funktioner der skal bruges til at opdatere og
+ * tegne snefnugget.
+ *
+ * Processing Workshop 4
+ * Open Space Aarhus 
+ *
+ * http://gfx.osaa.dk
+ */
+
 class Fnug {
   float posX;
   float posY;

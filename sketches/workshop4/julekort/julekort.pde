@@ -1,3 +1,13 @@
+/**
+ * Et julekort fra OSAAs processing workshop
+ * Giver et eksempel på hvordan man kan lave sine egne klasser.
+ *
+ * Processing Workshop 4
+ * Open Space Aarhus 
+ *
+ * http://gfx.osaa.dk
+ */
+
 final int ANTAL = 500;
 Fnug[] snevejr = new Fnug[ANTAL];
 

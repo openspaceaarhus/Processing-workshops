@@ -1,9 +1,13 @@
 /**
- * Processing Workshop 3
- * Open Space Aarhus 
- * http://gfx.osaa.dk
+ * En kanon som kan dreje og skyde flere kanonkugler afsted
+ * Der er også gjort lidt ekstra ud af grafikken.
  *
  * Drej kanonen med piletasterne og skyd med mellemrumstasten
+ *
+ * Processing Workshop 3
+ * Open Space Aarhus 
+ *
+ * http://gfx.osaa.dk
  */
 
 // antal kanonkugler

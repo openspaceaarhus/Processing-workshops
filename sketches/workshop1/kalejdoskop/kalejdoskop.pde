@@ -1,3 +1,13 @@
+/**
+ * Kalejdoskopisk tegne program
+ * Flyt musen rundt i vinduet
+ *
+ * Processing workshop 1
+ * Open Space Aarhus
+ * 
+ * http://gfx.osaa.dk
+ */
+
 void setup() {
   size(600, 600);
   reset();

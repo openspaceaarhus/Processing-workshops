@@ -1,3 +1,13 @@
+/**
+ * Bruger processings tegnefunktioner til at
+ * tegne en lille rød bil
+ *
+ * Processing workshop 1
+ * Open Space Aarhus
+ * 
+ * http://gfx.osaa.dk
+ */
+
 // åben et vindue der er 400x400 pixels
 size(400, 400);
 
